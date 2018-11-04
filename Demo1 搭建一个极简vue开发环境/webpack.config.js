@@ -1,4 +1,6 @@
 let path=require("path");
+const webpack = require('webpack');
+const HtmlWebpackPlugin=require('html-webpack-plugin');
 const { VueLoaderPlugin } = require('vue-loader');
 module.exports={
     entry:"./src/main.js",
@@ -33,6 +35,17 @@ module.exports={
     },
     plugins: [
         new VueLoaderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            // 指定编译后生成的html文件名
+            filename: 'index.html',
+            // 需要处理的模板
+            template: 'index.html',
+            // 打包过程中输出的js、css的路径添加到html文件中
+            // css文件插入到head中
+            // js文件插入到body中，可能的选项有 true, 'head', 'body', false
+            inject: true
+          })
     ],
     devServer:{
         contentBase: path.join(__dirname,"/"),  //指定服务器 index.html 资源的根目录
