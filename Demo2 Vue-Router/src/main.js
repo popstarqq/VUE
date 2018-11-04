@@ -1,10 +1,7 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
+
 import Vue from 'vue'
-import App from './APP.vue'
-
-
 import VueRouter from 'vue-router'
+import App from './APP.vue'
 
 Vue.use(VueRouter);
 // 1. 定义组件。
@@ -16,7 +13,6 @@ const routesobj = [
     { path: '/', component: home },
     { path: '/about', component: about }
 ]
-
 
 const router=new VueRouter({
   routes:routesobj
