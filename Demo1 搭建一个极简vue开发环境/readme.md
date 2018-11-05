@@ -17,7 +17,6 @@
   </head>
   <body>
     <div id="app"></div>
-    <!-- built files will be auto injected -->
   </body>
 </html>
 
@@ -39,4 +38,90 @@ App.vue
   }
 </script>
 
+```
+
+main.js
+``` javascript
+import Vue from 'vue'
+import App from './App'
+new Vue({
+  el: '#app',
+  template: '<App/>',
+  components: { App }
+})
+
+```
+4. 安装如下依赖包，这里已经提供好了；可以直接 npm install；也可以一个个安装;程序依赖包只有一个vue；其他都是开发环境需要用的包
+
+``` json
+{
+"name": "demo1",
+"version": "1.0.0",
+"description": "",
+"main": "index.js",
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+},
+"author": "",
+"license": "ISC",
+"devDependencies": {
+  "@babel/core": "^7.1.2",
+  "@babel/preset-env": "^7.1.0",
+  "babel-loader": "^8.0.4",
+  "css-loader": "^1.0.1",
+  "style-loader": "^0.23.1",
+  "vue-loader": "^15.4.2",
+  "vue-template-compiler": "^2.5.17",
+  "webpack": "^4.23.1",
+  "webpack-cli": "^3.1.2",
+  "webpack-dev-server": "^3.1.10"
+},
+"dependencies": {
+  "vue": "^2.5.17"
+}
+}
+```
+5. 别忘了新建.babelrc文件，这里安装的是babel 7版本,所以有所不同
+``` json
+{
+"presets": ["@babel/preset-env"]  //babel 7开始不用env
+}
+```
+6.新建webpack.config.js,主要配置打包信息，如下
+这里是一个基本的配置，只配置了打包css、js的规则，你也可以加入打包html、照片等规则；
+
+``` javascript
+let path=require("path");
+module.exports={
+    entry:"./src/main.js",
+    output:{
+        path:path.join(__dirname,'./static/'),
+        filename:'bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                use:{
+                    loader:'babel-loader'
+                },
+//排除node_modules中的js文件 优化打包速度
+                exclude: path.resolve(__dirname, './node_modules'),          
+  }
+        ]
+    },
+devServer:{
+//指定服务器 index.html 资源的根目录
+        contentBase: path.join(__dirname,"/"),
+//设置端口号
+        port:6000,
+//开启inline 我们保存完服务器端代码后，不需要再次运行命令即可刷新网页查看新效果
+        inline:true,
+        hot:true        
+    }
+}
 ```
