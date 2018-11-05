@@ -93,6 +93,7 @@ new Vue({
 
 ``` javascript
 let path=require("path");
+const { VueLoaderPlugin } = require('vue-loader');
 module.exports={
     entry:"./src/main.js",
     output:{
@@ -120,6 +121,9 @@ module.exports={
             'vue': 'vue/dist/vue.js'
         }
     },
+    plugin:{
+      new VueLoaderPlugin()
+    },
     devServer:{
             //指定服务器 index.html 资源的根目录
             contentBase: path.join(__dirname,"/"),
@@ -129,11 +133,62 @@ module.exports={
     }
 ```
 7. 执行webpack-dev-server,项目便可以跑起来了；
-8. 配置热更新，需要安装一个插件;
+8. 配置热更新;
 ``` json
 npm install --save html-webpack-plugin
 ```
-9. 在webpack.config.js 中使用该该插件
-``` javascripr
-
+ 在webpack.config.js 中使用该插件
+``` javascript
+let path=require("path");
+const { VueLoaderPlugin } = require('vue-loader');
+**const webpack = require('webpack');**
+**const HtmlWebpackPlugin=require('html-webpack-plugin');**
+module.exports={
+    entry:"./src/main.js",
+    output:{
+        path:path.join(__dirname,'./static/'),
+        filename:'bundle.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [ 'style-loader', 'css-loader' ]
+            },
+            {
+                test: /\.(js|jsx)$/,
+                use:{
+                    loader:'babel-loader'
+                },
+                //排除node_modules中的js文件 优化打包速度
+                exclude: path.resolve(__dirname, './node_modules'),          
+            }
+        ]
+    },
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
+    },
+    plugin:{
+      new VueLoaderPlugin(),
+   **   new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            // 指定编译后生成的html文件名
+            filename: 'index.html',
+            // 需要处理的模板
+            template: 'index.html',
+            // 打包过程中输出的js、css的路径添加到html文件中
+            // css文件插入到head中
+            // js文件插入到body中，可能的选项有 true, 'head', 'body', false
+            inject: true
+          })**
+    },
+    devServer:{
+            //指定服务器 index.html 资源的根目录
+            contentBase: path.join(__dirname,"/"),
+            //设置端口号
+            port:6000,   
+        }
+    }
 ```
