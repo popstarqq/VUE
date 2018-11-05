@@ -133,7 +133,7 @@ module.exports={
     }
 ```
 7. 执行webpack-dev-server,项目便可以跑起来了；
-8. 配置热更新;
+8. 配置热更新;在运行过程中，更改任何代码会实现网页自动刷新
 ``` json
 npm install --save html-webpack-plugin
 ```
@@ -141,8 +141,10 @@ npm install --save html-webpack-plugin
 ``` javascript
 let path=require("path");
 const { VueLoaderPlugin } = require('vue-loader');
-**const webpack = require('webpack');**
-**const HtmlWebpackPlugin=require('html-webpack-plugin');**
+
+const webpack = require('webpack');
+const HtmlWebpackPlugin=require('html-webpack-plugin');
+
 module.exports={
     entry:"./src/main.js",
     output:{
@@ -172,7 +174,8 @@ module.exports={
     },
     plugin:{
       new VueLoaderPlugin(),
-   **   new webpack.HotModuleReplacementPlugin(),
+      
+      new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             // 指定编译后生成的html文件名
             filename: 'index.html',
@@ -182,7 +185,8 @@ module.exports={
             // css文件插入到head中
             // js文件插入到body中，可能的选项有 true, 'head', 'body', false
             inject: true
-          })**
+          })
+          
     },
     devServer:{
             //指定服务器 index.html 资源的根目录
@@ -192,3 +196,11 @@ module.exports={
         }
     }
 ```
+9. 在script脚本中添加dev命令
+``` json
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+"dev":"webpack-dev-server -open chrome"
+}
+```
+10. npm run dev运行
