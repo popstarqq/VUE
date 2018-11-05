@@ -115,6 +115,11 @@ module.exports={
             }
         ]
     },
+    resolve: {
+        alias: {
+            'vue': 'vue/dist/vue.js'
+        }
+    },
     devServer:{
             //指定服务器 index.html 资源的根目录
             contentBase: path.join(__dirname,"/"),
@@ -124,4 +129,11 @@ module.exports={
     }
 ```
 7. 执行webpack-dev-server,项目便可以跑起来了；
-8. 配置热更新，需要安装一个插件
+8. 配置热更新，需要安装一个插件;
+``` json
+npm install --save html-webpack-plugin
+```
+9. 在webpack.config.js 中使用该该插件
+``` javascripr
+
+```
