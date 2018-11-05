@@ -3,6 +3,7 @@
 安装所有依赖模块
 ## 2. npm run dev
 通过dev-server 运行程序，支持vue文件热更新
+**关于vue-router vuex的教程可去个人网站-[小白GIS](http://www.xiaobaigis.com/Home/Index/VUE)**
 
 ## 搭建流程如下
 1. 新建一个文件夹demo1，然后执行npm init,一直回车生成package.json
