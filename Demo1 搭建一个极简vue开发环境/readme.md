@@ -26,6 +26,7 @@ App.vue
 ``` vue
 <template>
   <div class="app">
+  <h1>搭建一个极简的vue开发环境</h1>
   </div>
 </template>
 
@@ -87,7 +88,7 @@ new Vue({
 "presets": ["@babel/preset-env"]  //babel 7开始不用env
 }
 ```
-6.新建webpack.config.js,主要配置打包信息，如下
+6. 新建webpack.config.js,主要配置打包信息，如下
 这里是一个基本的配置，只配置了打包css、js的规则，你也可以加入打包html、照片等规则；
 
 ``` javascript
@@ -109,19 +110,18 @@ module.exports={
                 use:{
                     loader:'babel-loader'
                 },
-//排除node_modules中的js文件 优化打包速度
+                //排除node_modules中的js文件 优化打包速度
                 exclude: path.resolve(__dirname, './node_modules'),          
-  }
+            }
         ]
     },
-devServer:{
-//指定服务器 index.html 资源的根目录
-        contentBase: path.join(__dirname,"/"),
-//设置端口号
-        port:6000,
-//开启inline 我们保存完服务器端代码后，不需要再次运行命令即可刷新网页查看新效果
-        inline:true,
-        hot:true        
+    devServer:{
+            //指定服务器 index.html 资源的根目录
+            contentBase: path.join(__dirname,"/"),
+            //设置端口号
+            port:6000,   
+        }
     }
-}
 ```
+7. 执行webpack-dev-server,项目便可以跑起来了；
+8. 配置热更新，需要安装一个插件
