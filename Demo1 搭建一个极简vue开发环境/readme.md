@@ -22,4 +22,21 @@
 </html>
 
 ```
+3. 在根目录新建src文件夹，在src文件夹中新建一个App.vue,主组件和入口文件main.js
+App.vue
+``` vue
+<template>
+  <div class="app">
+  </div>
+</template>
 
+<script>
+  export default {
+    name: 'App',
+    data () {
+       return{}
+}
+  }
+</script>
+
+```
