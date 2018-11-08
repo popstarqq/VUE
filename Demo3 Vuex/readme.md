@@ -9,4 +9,3 @@
 
 ### demo效果
 ![小白Demo](http://www.xiaobaigis.com/net/upload/image/20181105/59e99b96-ae2d-4d5a-9bad-094c7f5f342a.gif)
-![小白demo](http://www.xiaobaigis.com/net/upload/image/20181104/6367694246936007206523977.gif)
