@@ -6,6 +6,8 @@
 **关于vue-router vuex的教程可去个人网站-[小白GIS](http://www.xiaobaigis.com/Home/Index/VUE)**
 
 ## 搭建流程如下
+注：开发IDE是visual studion code;在扩展中安装vetur插件，以支持.vue文件
+
 1. 新建一个文件夹demo1，然后执行npm init,一直回车生成package.json
 2. 根目录新建index.html，内容如下:
 ``` html
