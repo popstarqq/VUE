@@ -124,9 +124,9 @@ module.exports={
             'vue': 'vue/dist/vue.js'
         }
     },
-    plugin:{
+    plugin:[
       new VueLoaderPlugin()
-    },
+    ],
     devServer:{
             //指定服务器 index.html 资源的根目录
             contentBase: path.join(__dirname,"/"),
@@ -175,7 +175,7 @@ module.exports={
             'vue': 'vue/dist/vue.js'
         }
     },
-    plugin:{
+    plugin:[
       new VueLoaderPlugin(),
       
       new webpack.HotModuleReplacementPlugin(),
@@ -190,7 +190,7 @@ module.exports={
             inject: true
           })
           
-    },
+    ],
     devServer:{
             //指定服务器 index.html 资源的根目录
             contentBase: path.join(__dirname,"/"),
